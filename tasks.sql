@@ -43,3 +43,16 @@ AND EnrollmentID IN (
     JOIN STUDENT s ON e.StudentID = s.StudentID
     WHERE s.LastName LIKE '%Q%'
 );
+
+-- Calculating the weighted final grade for Student 1 (John Smith)
+SELECT 
+    s.FirstName, 
+    s.LastName,
+    SUM((sub.Score / a.MaxScore) * (cat.WeightPercent / 100)) * 100 AS Final_Percentage
+FROM STUDENT s
+JOIN ENROLLMENT e ON s.StudentID = e.StudentID
+JOIN SUBMISSION sub ON e.EnrollmentID = sub.EnrollmentID
+JOIN ASSIGNMENT a ON sub.AssignmentID = a.AssignmentID
+JOIN CATEGORY cat ON a.CategoryID = cat.CategoryID
+WHERE s.StudentID = 1
+GROUP BY s.FirstName, s.LastName;
