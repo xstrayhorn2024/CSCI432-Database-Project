@@ -53,3 +53,13 @@ CREATE TABLE CATEGORY (
     WeightPercent DECIMAL(5,2),
     FOREIGN KEY (CourseID) REFERENCES COURSE(CourseID)
 );
+
+-- LEVEL 5: Final table (Submissions)
+CREATE TABLE SUBMISSION (
+    SubmissionID INT PRIMARY KEY,
+    AssignmentID INT,
+    EnrollmentID INT,
+    Score INT,
+    FOREIGN KEY (AssignmentID) REFERENCES ASSIGNMENT(AssignmentID),
+    FOREIGN KEY (EnrollmentID) REFERENCES ENROLLMENT(EnrollmentID)
+);
