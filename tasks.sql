@@ -25,3 +25,7 @@ ORDER BY s.LastName, a.Title;
 
 INSERT INTO ASSIGNMENT (AssignmentID, CategoryID, Title, MaxScore, DueDate) 
 VALUES (503, 1, 'SQL Lab 2', 100, '2026-05-01');
+
+-- Changing Homework (ID 1) to 30% and Exams (ID 2) to 70%
+UPDATE CATEGORY SET WeightPercent = 30.0 WHERE CategoryID = 1;
+UPDATE CATEGORY SET WeightPercent = 70.0 WHERE CategoryID = 2;
