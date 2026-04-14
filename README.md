@@ -1,5 +1,15 @@
-## Project Test Results
+# CSCI 432: Database Systems Project - Gradebook Implementation
 
+## Entity Relationship Diagram (ERD)
+![ER Diagram](./ER_Diagram_Final.png)
+
+## Getting Started
+To execute this project, please run the SQL scripts in the following order using a MySQL 8.0 environment (tested on db<>fiddle):
+1. `schema.sql` - Sets up the table structures.
+2. `data.sql` - Populates the tables with professors, students, and assignment data.
+3. `tasks.sql` - Contains the queries for the project requirements.
+
+## Project Test Results
 Below are the results generated from the test cases using the `tasks.sql` script.
 
 ### 1. Database Initialization (Tasks 2 & 3)
