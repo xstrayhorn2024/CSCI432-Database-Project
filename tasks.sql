@@ -56,3 +56,25 @@ JOIN ASSIGNMENT a ON sub.AssignmentID = a.AssignmentID
 JOIN CATEGORY cat ON a.CategoryID = cat.CategoryID
 WHERE s.StudentID = 1
 GROUP BY s.FirstName, s.LastName;
+
+-- Calculating the grade for Student 1, dropping the lowest score in each category
+WITH RankedScores AS (
+    SELECT 
+        e.StudentID,
+        a.CategoryID,
+        sub.Score,
+        a.MaxScore,
+        ROW_NUMBER() OVER(PARTITION BY e.StudentID, a.CategoryID ORDER BY sub.Score ASC) as score_rank
+    FROM ENROLLMENT e
+    JOIN SUBMISSION sub ON e.EnrollmentID = sub.EnrollmentID
+    JOIN ASSIGNMENT a ON sub.AssignmentID = a.AssignmentID
+)
+SELECT 
+    s.FirstName, 
+    s.LastName,
+    SUM((rs.Score / rs.MaxScore) * (cat.WeightPercent / 100)) * 100 AS Adjusted_Grade
+FROM STUDENT s
+JOIN RankedScores rs ON s.StudentID = rs.StudentID
+JOIN CATEGORY cat ON rs.CategoryID = cat.CategoryID
+WHERE s.StudentID = 1 AND rs.score_rank > 1 -- This drops the lowest score
+GROUP BY s.FirstName, s.LastName;
