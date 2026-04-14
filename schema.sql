@@ -36,6 +36,16 @@ CREATE TABLE ENROLLMENT (
     FOREIGN KEY (StudentID) REFERENCES STUDENT(StudentID)
 );
 
+-- LEVEL 4: Table dependent on Category
+CREATE TABLE ASSIGNMENT (
+    AssignmentID INT PRIMARY KEY,
+    CategoryID INT,
+    Title VARCHAR(100),
+    MaxScore INT,
+    DueDate DATE,
+    FOREIGN KEY (CategoryID) REFERENCES CATEGORY(CategoryID)
+);
+
 CREATE TABLE CATEGORY (
     CategoryID INT PRIMARY KEY,
     CourseID INT,
