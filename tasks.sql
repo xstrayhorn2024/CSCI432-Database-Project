@@ -22,3 +22,6 @@ JOIN SUBMISSION sub ON e.EnrollmentID = sub.EnrollmentID
 JOIN ASSIGNMENT a ON sub.AssignmentID = a.AssignmentID
 WHERE e.CourseID = 101
 ORDER BY s.LastName, a.Title;
+
+INSERT INTO ASSIGNMENT (AssignmentID, CategoryID, Title, MaxScore, DueDate) 
+VALUES (503, 1, 'SQL Lab 2', 100, '2026-05-01');
