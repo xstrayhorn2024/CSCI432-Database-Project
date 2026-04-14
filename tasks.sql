@@ -33,3 +33,13 @@ UPDATE CATEGORY SET WeightPercent = 70.0 WHERE CategoryID = 2;
 UPDATE SUBMISSION 
 SET Score = Score + 2 
 WHERE AssignmentID = 501;
+
+UPDATE SUBMISSION
+SET Score = Score + 2
+WHERE AssignmentID = 501 
+AND EnrollmentID IN (
+    SELECT e.EnrollmentID 
+    FROM ENROLLMENT e
+    JOIN STUDENT s ON e.StudentID = s.StudentID
+    WHERE s.LastName LIKE '%Q%'
+);
