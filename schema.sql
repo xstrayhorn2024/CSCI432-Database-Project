@@ -24,3 +24,22 @@ CREATE TABLE COURSE (
     Year INT,
     FOREIGN KEY (ProfessorID) REFERENCES PROFESSOR(ProfessorID)
 );
+
+-- LEVEL 3: Tables dependent on Course
+CREATE TABLE ENROLLMENT (
+    EnrollmentID INT PRIMARY KEY,
+    CourseID INT,
+    StudentID INT,
+    FinalScore DECIMAL(5,2),
+    LetterGrade CHAR(2),
+    FOREIGN KEY (CourseID) REFERENCES COURSE(CourseID),
+    FOREIGN KEY (StudentID) REFERENCES STUDENT(StudentID)
+);
+
+CREATE TABLE CATEGORY (
+    CategoryID INT PRIMARY KEY,
+    CourseID INT,
+    CategoryName VARCHAR(50),
+    WeightPercent DECIMAL(5,2),
+    FOREIGN KEY (CourseID) REFERENCES COURSE(CourseID)
+);
