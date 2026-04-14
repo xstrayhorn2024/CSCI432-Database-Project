@@ -36,6 +36,15 @@ CREATE TABLE ENROLLMENT (
     FOREIGN KEY (StudentID) REFERENCES STUDENT(StudentID)
 );
 
+-- MOVE CATEGORY HERE (Must come before Assignment)
+CREATE TABLE CATEGORY (
+    CategoryID INT PRIMARY KEY,
+    CourseID INT,
+    CategoryName VARCHAR(50),
+    WeightPercent DECIMAL(5,2),
+    FOREIGN KEY (CourseID) REFERENCES COURSE(CourseID)
+);
+
 -- LEVEL 4: Table dependent on Category
 CREATE TABLE ASSIGNMENT (
     AssignmentID INT PRIMARY KEY,
@@ -44,14 +53,6 @@ CREATE TABLE ASSIGNMENT (
     MaxScore INT,
     DueDate DATE,
     FOREIGN KEY (CategoryID) REFERENCES CATEGORY(CategoryID)
-);
-
-CREATE TABLE CATEGORY (
-    CategoryID INT PRIMARY KEY,
-    CourseID INT,
-    CategoryName VARCHAR(50),
-    WeightPercent DECIMAL(5,2),
-    FOREIGN KEY (CourseID) REFERENCES COURSE(CourseID)
 );
 
 -- LEVEL 5: Final table (Submissions)
